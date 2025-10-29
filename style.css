@@ -929,3 +929,110 @@ html,body { height: 100%; font-family: Inter, system-ui, -apple-system, "Segoe U
   .form-actions { flex-direction: column; align-items: stretch; }
   .form-actions .btn { width: 100%; text-align:center; }
 }
+/* === FOOTER STYLES === */
+.footer {
+  background-color: #071428;
+  color: #fff;
+  padding: 60px 20px 20px;
+  text-align: left;
+}
+
+.footer-inner {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 40px;
+  max-width: 1100px;
+  margin: 0 auto 40px;
+}
+
+.footer h3,
+.footer h4 {
+  color: #ff4666;
+  margin-bottom: 14px;
+  font-weight: 700;
+}
+
+.footer p {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.footer-links ul,
+.footer-contact ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li,
+.footer-contact li {
+  margin-bottom: 8px;
+}
+
+.footer-links a,
+.footer-contact a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover,
+.footer-contact a:hover {
+  color: #ff4666;
+}
+
+/* Social icons */
+.footer-social {
+  margin-top: 14px;
+  display: flex;
+  gap: 12px;
+}
+
+.footer-social a {
+  color: #fff;
+  font-size: 1.2rem;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.footer-social a:hover {
+  background: #ff4666;
+  transform: translateY(-3px);
+}
+
+/* Bottom copyright area */
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding-top: 16px;
+}
+
+.footer-bottom p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+}
+
+/* Responsive footer */
+@media (max-width: 768px) {
+  .footer-inner {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .footer {
+    text-align: center;
+  }
+
+  .footer-social {
+    justify-content: center;
+  }
+}
+
+
