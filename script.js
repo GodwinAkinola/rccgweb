@@ -39,7 +39,7 @@ overlay.addEventListener('click', () => {
   }
 
   // Render function
-  function renderVerse(text, reference, sourceLabel='Voice of God Everyday by Pastor Dare ojo Bello') {
+  function renderVerse(text, reference, sourceLabel='Pastor Dare') {
     if (textEl) textEl.textContent = text || 'Verse unavailable.';
     if (refEl) refEl.textContent = reference || '';
     if (sourceEl) sourceEl.textContent = `Source: ${sourceLabel}`;
@@ -92,7 +92,7 @@ overlay.addEventListener('click', () => {
       refreshBtn.disabled = true;
       refreshBtn.setAttribute('aria-busy', 'true');
       await loadDailyVerse();
-      refreshBtn.disabled = false;
+      refreshBtn.disabled = true;
       refreshBtn.removeAttribute('aria-busy');
     });
   }
@@ -314,6 +314,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 });
+
 
 
 
