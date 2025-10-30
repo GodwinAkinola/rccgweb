@@ -261,7 +261,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       if (verseText) {
-        renderVerse(verseText, verseRef, 'Pastor Dare');
+        renderVerse(verseText, verseRef, 'Voice of God Everyday - Pastor Dare');
         return true;
       } else {
         throw new Error('API returned no verse');
@@ -304,6 +304,7 @@ document.addEventListener("DOMContentLoaded", () => {
     scheduleNextMidnight();
   });
 })();
+
 
 
 
