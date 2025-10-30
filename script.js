@@ -39,7 +39,7 @@ overlay.addEventListener('click', () => {
   }
 
   // Render function
-  function renderVerse(text, reference, sourceLabel='OurManna') {
+  function renderVerse(text, reference, sourceLabel='Voice of God Everyday - Pastor Dare ojo Bello') {
     if (textEl) textEl.textContent = text || 'Verse unavailable.';
     if (refEl) refEl.textContent = reference || '';
     if (sourceEl) sourceEl.textContent = `Source: ${sourceLabel}`;
@@ -314,6 +314,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 });
+
 
 
 
