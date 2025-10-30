@@ -39,7 +39,7 @@ overlay.addEventListener('click', () => {
   }
 
   // Render function
-  function renderVerse(text, reference, sourceLabel='Pastor Dare') {
+  function renderVerse(text, reference, sourceLabel='OurManna') {
     if (textEl) textEl.textContent = text || 'Verse unavailable.';
     if (refEl) refEl.textContent = reference || '';
     if (sourceEl) sourceEl.textContent = `Source: ${sourceLabel}`;
@@ -63,7 +63,7 @@ overlay.addEventListener('click', () => {
       }
 
       if (verseText) {
-        renderVerse(verseText, verseRef, 'OurManna');
+        renderVerse(verseText, verseRef, 'Voice of God Everyday by Pastor Dare');
         return true;
       } else {
         throw new Error('API returned no verse');
@@ -314,6 +314,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 });
+
 
 
 
