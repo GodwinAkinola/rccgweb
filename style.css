@@ -1035,4 +1035,77 @@ html,body { height: 100%; font-family: Inter, system-ui, -apple-system, "Segoe U
   }
 }
 
+/* === DAILY VERSE WIDGET === */
+.daily-verse {
+  padding: 28px 20px;
+  background: transparent;
+}
+
+.daily-verse-inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.daily-verse-card {
+  background: linear-gradient(180deg, #ffffff, #fbfcfd);
+  border-radius: 12px;
+  padding: 18px 20px;
+  box-shadow: 0 8px 26px rgba(7,20,40,0.04);
+  border-left: 6px solid #ff4666;
+}
+
+.dv-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.dv-header h3 {
+  margin: 0;
+  color: #071428;
+  font-size: 1.05rem;
+  letter-spacing: 0.4px;
+}
+
+.dv-refresh {
+  background: transparent;
+  border: 1px solid rgba(7,20,40,0.06);
+  padding: 6px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  color: #071428;
+  transition: transform .12s ease, background .12s ease;
+}
+.dv-refresh:hover { transform: translateY(-2px); background: rgba(7,20,40,0.02); }
+
+.dv-text {
+  margin: 8px 0 10px 0;
+  font-size: 1.05rem;
+  color: #222;
+  line-height: 1.6;
+  quotes: "“" "”";
+}
+.dv-text::before { content: open-quote; font-size: 1.4rem; line-height: 0; margin-right: 6px; vertical-align: top; color: #ff4666; }
+.dv-text::after { content: close-quote; display: none; }
+
+.dv-ref {
+  color: blueviolet;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.dv-meta { display:flex; align-items:center; justify-content:flex-start; gap:10px; color:#666; font-size:0.9rem; }
+
+/* small and mobile adjustments */
+@media (max-width: 768px) {
+  .daily-verse-card { padding: 14px 14px; }
+  .dv-text { font-size: 1rem; }
+  .dv-header h3 { font-size: 1rem; }
+}
+
+
+
 
