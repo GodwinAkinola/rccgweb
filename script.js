@@ -12,6 +12,110 @@ overlay.addEventListener('click', () => {
   overlay.classList.remove('show');
 });
 
+/* === DAILY BIBLE VERSE WIDGET === */
+(function () {
+  const API_URL = 'https://beta.ourmanna.com/api/v1/get/?format=json&order=daily';
+  const textEl = document.getElementById('dv-text');
+  const refEl = document.getElementById('dv-ref');
+  const sourceEl = document.getElementById('dv-source');
+  const refreshBtn = document.getElementById('dv-refresh');
+
+  // Local fallback verses (used if API fails). Add or edit as desired.
+  const FALLBACK_VERSES = [
+    { text: "For God so loved the world that he gave his one and only Son...", ref: "John 3:16" },
+    { text: "I can do all this through him who gives me strength.", ref: "Philippians 4:13" },
+    { text: "The LORD is my shepherd; I shall not want.", ref: "Psalm 23:1" },
+    { text: "Trust in the LORD with all your heart and lean not on your own understanding.", ref: "Proverbs 3:5" },
+    { text: "Be strong and courageous. Do not be afraid; do not be discouraged, for the LORD your God will be with you...", ref: "Joshua 1:9" },
+    { text: "Come to me, all you who are weary and burdened, and I will give you rest.", ref: "Matthew 11:28" },
+    { text: "But seek first his kingdom and his righteousness, and all these things will be given to you as well.", ref: "Matthew 6:33" }
+  ];
+
+  // Utility: pick a fallback verse deterministically based on today's date
+  function fallbackForToday() {
+    const now = new Date();
+    const dayIndex = Math.floor((now - new Date(now.getFullYear(), 0, 0)) / (1000*60*60*24));
+    return FALLBACK_VERSES[dayIndex % FALLBACK_VERSES.length];
+  }
+
+  // Render function
+  function renderVerse(text, reference, sourceLabel='OurManna') {
+    if (textEl) textEl.textContent = text || 'Verse unavailable.';
+    if (refEl) refEl.textContent = reference || '';
+    if (sourceEl) sourceEl.textContent = `Source: ${sourceLabel}`;
+  }
+
+  // Try fetching from OurManna API
+  async function fetchFromApi() {
+    try {
+      const resp = await fetch(API_URL, {cache: "no-store"});
+      if (!resp.ok) throw new Error('Network response not OK');
+      const json = await resp.json();
+      // OurManna returns verse.details.text and verse.details.reference (best-effort detection)
+      let verseText = null;
+      let verseRef = null;
+      if (json?.verse?.details) {
+        verseText = json.verse.details.text || json.verse.details.verse || null;
+        verseRef = json.verse.details.reference || json.verse.details.verse || null;
+      } else if (json?.text) {
+        verseText = json.text;
+        verseRef = json.reference || '';
+      }
+
+      if (verseText) {
+        renderVerse(verseText, verseRef, 'OurManna');
+        return true;
+      } else {
+        throw new Error('API returned no verse');
+      }
+    } catch (err) {
+      console.warn('Daily verse API failed:', err);
+      return false;
+    }
+  }
+
+  // Main loader: try API then fallback
+  async function loadDailyVerse() {
+    if (!textEl) return;
+    // show loading
+    renderVerse('Loading today\'s verse…', '');
+    const ok = await fetchFromApi();
+    if (!ok) {
+      const fb = fallbackForToday();
+      renderVerse(fb.text, fb.ref, 'local fallback');
+    }
+  }
+
+  // Refresh button
+  if (refreshBtn) {
+    refreshBtn.addEventListener('click', async () => {
+      refreshBtn.disabled = true;
+      refreshBtn.setAttribute('aria-busy', 'true');
+      await loadDailyVerse();
+      refreshBtn.disabled = false;
+      refreshBtn.removeAttribute('aria-busy');
+    });
+  }
+
+  // Auto-refresh at next local midnight (so verse updates daily)
+  function scheduleNextMidnight() {
+    const now = new Date();
+    const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+    const msUntilMidnight = tomorrow - now + 2000; // slight pad
+    setTimeout(async () => {
+      await loadDailyVerse();
+      scheduleNextMidnight(); // schedule again for the next day
+    }, msUntilMidnight);
+  }
+
+  // Init
+  document.addEventListener('DOMContentLoaded', () => {
+    loadDailyVerse();
+    scheduleNextMidnight();
+  });
+})();
+
+
 
 
 
@@ -210,6 +314,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 });
+
 
 
 
