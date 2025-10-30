@@ -99,6 +99,25 @@
     <!-- Visually hidden live region for screen reader updates -->
     <div class="visually-hidden" aria-live="polite" id="carousel-live"></div>
   </section>
+  <!-- DAILY BIBLE VERSE -->
+<section id="daily-verse" class="daily-verse" aria-labelledby="daily-verse-title">
+  <div class="container daily-verse-inner">
+    <div class="daily-verse-card" role="region" aria-live="polite" aria-atomic="true">
+      <div class="dv-header">
+        <h3 id="daily-verse-title">Daily Verse</h3>
+        <button id="dv-refresh" class="dv-refresh" aria-label="Refresh verse">⟳</button>
+      </div>
+
+      <blockquote class="dv-text" id="dv-text">Loading today's verse…</blockquote>
+      <div class="dv-ref" id="dv-ref"></div>
+
+      <div class="dv-meta">
+        <small class="dv-source" id="dv-source">—</small>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 <main>
   <!-- === PREACHING SECTION === -->
@@ -114,10 +133,8 @@
     <!-- Sermon 1 -->
     <div class="preaching-content">
       <div class="preaching-video">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/HXM3BcAXe-k?si=HQpYn3cRv87Ta7ZN" title="YouTube video player" 
-        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-        </iframe>
+       <iframe width="560" height="315" src="https://www.youtube.com/embed/5FRVnaWAeG4?si=WEE8XbABA_bCq5uS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen
+       </iframe>
       </div>
       <div class="preaching-details">
         <h3>Walking in Faith</h3>
@@ -125,7 +142,7 @@
           Discover the power of trusting God through every situation. This
           message teaches us to walk boldly by faith, not by sight.
         </p>
-        <a href="#" class="btn">Watch Full Sermon</a>
+        
       </div>
     </div>
 
@@ -143,7 +160,7 @@
           Learn how God’s grace transforms lives and empowers us to live with
           purpose. Experience His unending mercy and love.
         </p>
-        <a href="#" class="btn">Watch Full Sermon</a>
+        
       </div>
     </div>
 
@@ -161,7 +178,7 @@
           Prayer brings us closer to God and changes situations through faith.
           Join us as we learn to communicate with the Father.
         </p>
-        <a href="#" class="btn">Watch Full Sermon</a>
+      
       </div>
     </div>
   </div>
@@ -278,8 +295,10 @@
           <li><strong>Service Times:</strong>
             <div class="service-times">
               <div><strong>Sunday Service</strong> — Sundays, 9:00 AM</div>
-              <div><strong>Midweek Prayer</strong> — Wednesdays, 6:30 PM</div>
-              <div><strong>Youth Night</strong> — 2nd Friday, 7:00 PM</div>
+              <div><strong>Digging Deep</strong> — Tuesdays, 6:00 PM</div>
+               <div><strong>Remember Me Oh Lord</strong> — Wednesdays, 5:30 AM</div>
+               <div><strong>Faith Clinic</strong> — Thursdays, 6:00 PM</div>
+              <div><strong>Youth Night</strong> — 2rd Friday, 11:00 PM</div>
             </div>
           </li>
         </ul>
@@ -394,12 +413,7 @@
         <li><strong>Email:</strong> <a href="mailto:info@rccgpraisesanctuary.org">info@rccgpraisesanctuary.org</a></li>
       </ul>
 
-      <!-- Social media icons -->
-      <div class="footer-social">
-        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-      </div>
+    
     </div>
   </div>
 
@@ -408,6 +422,7 @@
   </div>
 </footer>
 </html>
+
 
 
 
