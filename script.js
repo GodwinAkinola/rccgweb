@@ -299,21 +299,13 @@ observerMenu.observe(offcanvas, { attributes: true, attributeFilter: ['class'] }
 
 /* === AUTO SWITCH LAYOUT FOR PREACHING VIDEOS === */
 
-document.addEventListener("DOMContentLoaded", () => {
-  const preachingSections = document.querySelectorAll(".preaching-content");
-  preachingSections.forEach((section, index) => {
-    // Apply .reverse to even-numbered sections (2nd, 4th, etc.)
-    if ((index + 1) % 2 === 0) {
-      section.classList.add("reverse");
-    }
-  });
-});
 
 /* === AUTO YEAR FOR FOOTER COPYRIGHT === */
 document.addEventListener("DOMContentLoaded", () => {
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 });
+
 
 
 
