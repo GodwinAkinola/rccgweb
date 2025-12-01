@@ -11,62 +11,98 @@ overlay.addEventListener('click', () => {
   offcanvas.classList.remove('open');
   overlay.classList.remove('show');
 });
-/* === CHRISTMAS SNOW EFFECT === */
-const canvas = document.getElementById('snow-canvas');
-const ctx = canvas.getContext('2d');
+/* === CHRISTMAS SNOW + FALLING TEXT EFFECT === */
+const snowCanvas = document.getElementById("snow-canvas");
+const ctx = snowCanvas.getContext("2d");
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+function resizeSnowCanvas() {
+  snowCanvas.width = window.innerWidth;
+  snowCanvas.height = window.innerHeight;
+}
+resizeSnowCanvas();
+window.addEventListener("resize", resizeSnowCanvas);
 
+// Create snowflakes
 let snowflakes = [];
+let fallingTexts = [];
+const TEXT = "Happy New Month 🎉";  // You can edit this
 
-function createSnowflakes() {
-  const count = 120;
-  for (let i = 0; i < count; i++) {
+function createSnow() {
+  const snowCount = 120;
+  const textCount = 8; // Amount of falling texts
+
+  // Snowflakes
+  for (let i = 0; i < snowCount; i++) {
     snowflakes.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
+      x: Math.random() * snowCanvas.width,
+      y: Math.random() * snowCanvas.height,
       r: Math.random() * 3 + 1,
       d: Math.random() + 1
     });
   }
+
+  // Falling red text
+  for (let t = 0; t < textCount; t++) {
+    fallingTexts.push({
+      x: Math.random() * snowCanvas.width,
+      y: Math.random() * snowCanvas.height - 200,
+      speed: Math.random() * 1 + 0.5
+    });
+  }
 }
-createSnowflakes();
-
-function drawSnowflakes() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = "white";
-  ctx.beginPath();
-
-  snowflakes.forEach((snow) => {
-    ctx.moveTo(snow.x, snow.y);
-    ctx.arc(snow.x, snow.y, snow.r, 0, Math.PI * 2);
-  });
-
-  ctx.fill();
-  moveSnowflakes();
-}
+createSnow();
 
 let angle = 0;
 
-function moveSnowflakes() {
+function drawSnow() {
+  ctx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
+  
+  /* ==== DRAW SNOW ==== */
+  ctx.fillStyle = "white";
+  ctx.beginPath();
+  snowflakes.forEach(s => {
+    ctx.moveTo(s.x, s.y);
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+  });
+  ctx.fill();
+  
+  /* ==== DRAW FALLING TEXT ==== */
+  ctx.fillStyle = "red";       // text color
+  ctx.font = "bold 20px Arial";
+  fallingTexts.forEach(t => {
+    ctx.fillText(TEXT, t.x, t.y);
+  });
+
+  updateSnow();
+  updateTexts();
+}
+
+function updateSnow() {
   angle += 0.01;
 
-  snowflakes.forEach((snow) => {
-    snow.y += Math.cos(angle + snow.d) + 1 + snow.r / 2;
-    snow.x += Math.sin(angle) * 0.5;
+  snowflakes.forEach(s => {
+    s.y += Math.cos(angle + s.d) + 1 + s.r / 2;
+    s.x += Math.sin(angle) * 0.5;
 
-    if (snow.y > canvas.height) {
-      snow.y = 0;
-      snow.x = Math.random() * canvas.width;
+    if (s.y > snowCanvas.height) {
+      s.y = 0;
+      s.x = Math.random() * snowCanvas.width;
     }
   });
 }
 
-setInterval(drawSnowflakes, 25);
+function updateTexts() {
+  fallingTexts.forEach(t => {
+    t.y += t.speed;
 
+    if (t.y > snowCanvas.height + 50) {
+      t.y = -20;
+      t.x = Math.random() * snowCanvas.width;
+    }
+  });
+}
 
-
+setInterval(drawSnow, 25);
 
 
 
@@ -358,6 +394,7 @@ document.addEventListener("DOMContentLoaded", () => {
     scheduleNextMidnight();
   });
 })();
+
 
 
 
