@@ -67,7 +67,7 @@ function drawSnow() {
   ctx.fill();
   
   /* ==== DRAW FALLING TEXT ==== */
-  ctx.fillStyle = "red" "white";       // text color
+  ctx.fillStyle = "red/white";       // text color
   ctx.font = "bold 20px Arial";
   fallingTexts.forEach(t => {
     ctx.fillText(TEXT, t.x, t.y);
@@ -394,6 +394,7 @@ document.addEventListener("DOMContentLoaded", () => {
     scheduleNextMidnight();
   });
 })();
+
 
 
 
