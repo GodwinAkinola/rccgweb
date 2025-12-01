@@ -11,6 +11,60 @@ overlay.addEventListener('click', () => {
   offcanvas.classList.remove('open');
   overlay.classList.remove('show');
 });
+/* === CHRISTMAS SNOW EFFECT === */
+const canvas = document.getElementById('snow-canvas');
+const ctx = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let snowflakes = [];
+
+function createSnowflakes() {
+  const count = 120;
+  for (let i = 0; i < count; i++) {
+    snowflakes.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 3 + 1,
+      d: Math.random() + 1
+    });
+  }
+}
+createSnowflakes();
+
+function drawSnowflakes() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "white";
+  ctx.beginPath();
+
+  snowflakes.forEach((snow) => {
+    ctx.moveTo(snow.x, snow.y);
+    ctx.arc(snow.x, snow.y, snow.r, 0, Math.PI * 2);
+  });
+
+  ctx.fill();
+  moveSnowflakes();
+}
+
+let angle = 0;
+
+function moveSnowflakes() {
+  angle += 0.01;
+
+  snowflakes.forEach((snow) => {
+    snow.y += Math.cos(angle + snow.d) + 1 + snow.r / 2;
+    snow.x += Math.sin(angle) * 0.5;
+
+    if (snow.y > canvas.height) {
+      snow.y = 0;
+      snow.x = Math.random() * canvas.width;
+    }
+  });
+}
+
+setInterval(drawSnowflakes, 25);
+
 
 
 
@@ -304,6 +358,7 @@ document.addEventListener("DOMContentLoaded", () => {
     scheduleNextMidnight();
   });
 })();
+
 
 
 
