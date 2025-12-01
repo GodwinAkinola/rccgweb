@@ -58,7 +58,7 @@ function drawSnow() {
   ctx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
   
   /* ==== DRAW SNOW ==== */
-  ctx.fillStyle = "white";
+  ctx.fillStyle = "white red";
   ctx.beginPath();
   snowflakes.forEach(s => {
     ctx.moveTo(s.x, s.y);
@@ -394,6 +394,7 @@ document.addEventListener("DOMContentLoaded", () => {
     scheduleNextMidnight();
   });
 })();
+
 
 
 
