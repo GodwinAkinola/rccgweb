@@ -58,7 +58,7 @@ function drawSnow() {
   ctx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
   
   /* ==== DRAW SNOW ==== */
-  ctx.fillStyle = "white red";
+  ctx.fillStyle = "white";
   ctx.beginPath();
   snowflakes.forEach(s => {
     ctx.moveTo(s.x, s.y);
@@ -67,7 +67,7 @@ function drawSnow() {
   ctx.fill();
   
   /* ==== DRAW FALLING TEXT ==== */
-  ctx.fillStyle = "white";       // text color
+  ctx.fillStyle = "red";       // text color
   ctx.font = "bold 20px Arial";
   fallingTexts.forEach(t => {
     ctx.fillText(TEXT, t.x, t.y);
@@ -394,6 +394,7 @@ document.addEventListener("DOMContentLoaded", () => {
     scheduleNextMidnight();
   });
 })();
+
 
 
 
