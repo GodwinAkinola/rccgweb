@@ -25,7 +25,7 @@ window.addEventListener("resize", resizeSnowCanvas);
 // Create snowflakes
 let snowflakes = [];
 let fallingTexts = [];
-const TEXT = "Happy New Month 🎉";  // You can edit this
+const TEXT = "";  // You can edit this
 
 function createSnow() {
   const snowCount = 120;
@@ -394,6 +394,7 @@ document.addEventListener("DOMContentLoaded", () => {
     scheduleNextMidnight();
   });
 })();
+
 
 
 
