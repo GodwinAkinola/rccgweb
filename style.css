@@ -1187,6 +1187,19 @@ html,body { height: 100%; font-family: Inter, system-ui, -apple-system, "Segoe U
   color: #071428;
 }
 
+#upcoming-events {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.event-image img {
+  width: 100%;
+  max-width: 900px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+
 
 
 
